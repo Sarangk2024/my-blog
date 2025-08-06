@@ -6,7 +6,6 @@ interface Post {
   title: string;
   body: string;
   author: string;
-  image_url: string;
 }
 
 async function getPosts(): Promise<Post[]> {
@@ -18,9 +17,8 @@ async function getPosts(): Promise<Post[]> {
 }
 
 export default async function Home({ searchParams }: { searchParams: { q?: string } }) {
-  // Fix: Await searchParams before accessing its properties
-  const search = await searchParams;
-  const searchQuery = search.q || '';
+  // Correct: Access searchParams directly without using await
+  const searchQuery = searchParams.q || '';
   
   const posts = await getPosts();
 
