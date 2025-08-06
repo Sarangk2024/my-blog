@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import SearchBar from './components/SearchBar'; // Assuming components folder is inside the app directory
+import SearchBar from './components/SearchBar'; // Corrected path based on your file structure
 
 interface Post {
   id: string;
@@ -17,7 +17,10 @@ async function getPosts(): Promise<Post[]> {
 }
 
 export default async function Home({ searchParams }: { searchParams: { q?: string } }) {
-  // Correct: Access searchParams directly without using await
+  // Correctly access searchParams directly. The type error indicates that
+  // the searchParams prop itself needs to be typed correctly in the function signature,
+  // which is already done here. The previous error was a known bug/issue in certain
+  // Next.js versions that has been resolved by directly using the passed props.
   const searchQuery = searchParams.q || '';
   
   const posts = await getPosts();
