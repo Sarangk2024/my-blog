@@ -13,7 +13,7 @@ async function getPost(id: string): Promise<Post> {
   return res.json();
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: any) {
   const post = await getPost(params.id);
 
   return (
